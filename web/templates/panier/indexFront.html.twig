@@ -1,0 +1,141 @@
+{% extends 'baseFront.html.twig' %}
+{% block title %}Panier
+{% endblock %}
+
+{% block body %}
+	<section id="portfolio" class="portfolio sections-bg">
+		<div class="container aos-init aos-animate" data-aos="fade-up">
+
+			{% if error %}
+				<div class="alert alert-danger" role="alert">
+					{{ error }}
+				</div>
+			{% endif %}
+
+			<div class="pagetitle">
+				<h2 style="text-align: center;">Votre Panier
+				</h2>
+			</div>
+			<br>
+			<!-- End Page Title -->
+
+			<div class="portfolio-isotope aos-init aos-animate" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+				{% if error %}
+					<div class="alert alert-danger" role="alert">
+						{{ error }}
+					</div>
+				{% endif %}
+
+				<div class="pagetitle"></div>
+				<div>
+					<ul class="portfolio-flters">
+						<li data-filter="*" class="filter-active">
+							{% if Panier.getProduits() | length > 0 %}
+								<td>
+									<div class="row mb-3" style="text-align:left;">
+										<strong>Prix Total de la commande =
+											{{TotalPrix}}
+											dt</strong>
+									</div>
+								</td>
+							{% endif %}
+						</li>
+					</ul>
+					<!-- End Portfolio Filters -->
+				</div>
+				<div class="row gy-4 portfolio-container" style="position: relative; height: 2803.56px;">
+					<div class="col-xl-15 col-md-15 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
+						<div class="portfolio-wrap">
+							<a href="assets/img/portfolio/app-1.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="" class="img-fluid" alt=""></a>
+							<div class="portfolio-info">
+								{% if Panier != null %}
+
+
+									{% if Panier.getProduits() | length == 0 %}{% endif %}
+
+									<table class="table">
+										<thead>
+											<tr>
+												<th scope="col">Nom</th>
+												<th scope="col">Prix</th>
+												<th scope="col">Description</th>
+												<th scope="col">Quantite</th>
+												<th scope="col"></th>
+												<th scope="col"></th>
+											</tr>
+										</thead>
+										<tbody>
+
+											<tr>
+												{% if Panier == null %}
+
+													<p style="text-align: center">
+														Panier vide</p>
+
+												{% endif %}
+											</tr>
+											{% if Panier != null %}
+												{% if Panier.getProduits() | length == 0 %}
+
+													<p style="text-align: center">
+														Panier vide</p>
+
+												{% endif %}
+												{% for p in Panier.getProduits()  %}
+													<tr>
+														<td>{{p.nomP}}</td>
+														<td>{{p.prixP}}</td>
+														<td>{{ p.descriptionP }}</td>
+														<td>
+															{{ p.Quantiteproduit }}
+														</td>
+
+
+														<td><img style="width: 110px; height: 90px; padding: 2px;" src="{{ asset('uploads/'~p.imageP) }}"/></td>
+
+
+														<td>
+
+															<a href="{{ path('suppressionProduitDuPanier',{idPanier:Panier.id, idProduit:p.id}) }}">
+																<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+																	<i class="bi bi-trash"></i>
+																</button>
+															</a>
+
+
+														</td>
+
+													</tr>
+
+												{% endfor %}
+
+
+											{% endif %}
+
+
+										</tbody>
+
+
+									</table>
+
+									<td>
+										<a href="{{ path('display_prodFront') }}">
+											<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+												ajouter produit
+											</button>
+										</a>
+
+
+										<a href="{{ path('PasserCommande') }}">
+											<button type="button" class="btn btn-primary">Passer la commande</button>
+										</a>
+									</td>
+								{% endif %}
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	{% endblock %}

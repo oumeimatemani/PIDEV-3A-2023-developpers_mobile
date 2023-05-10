@@ -1,0 +1,28 @@
+{% extends 'basefront.html.twig' %}
+
+{% block body %}
+    </br></br></br>
+
+    {# recherche #}
+    <div class="example-wrapper">
+        <h1>Savoir plus</h1> <hr>
+
+        <div class="row">
+            <div class="col-md-6">
+                </br></br></br></br></br></br>
+                {{ form_start(form) }}
+                {{ form_row(form.name, {'attr': {'class': 'form-control', 'placeholder': 'Recherche'}}) }}
+                <hr>
+                <button type="submit" class="btn btn-success btn-block">Rechercher</button>
+                {{ form_end(form) }}
+            </div>
+            <div class="col-md-6">
+                {% if qrCode %}
+                    <img src="{{ qrCode }}" alt="qr-code">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    </br></br></br>
+{% endblock %}
+

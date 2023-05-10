@@ -1,0 +1,12 @@
+{% extends 'baseU.html.twig' %}
+
+{% block title %}Nouveau utilisateur{% endblock %}
+
+{% block body %}
+<div class="container" style="width:40%">
+    <h1 style="color: #012970;font-family: "Nunito", sans-serif; margin-top:40px;">Ajouter un utilisateur </h1>
+    {{ include('user/_form.html.twig') }}
+
+    <a href="{{ path('app_user_index') }}"><button class="btn btn-outline-info float-right" > retour </button> </a>
+    </div>
+{% endblock %}

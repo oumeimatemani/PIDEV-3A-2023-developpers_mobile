@@ -1,0 +1,60 @@
+<div class="card-body">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <form>
+
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.dateRV, 'dateRV', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.dateRV, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.dateRV) is not empty %}
+                    <div class="alert text-danger">
+                        {{ form_errors(form.dateRV) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+        <div class="mb-3">
+            {{ form_label(form.adresseRV, 'adresseRV', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.adresseRV, {'attr': {'class': 'form-control'}}) }}
+            {% if form_errors(form.adresseRV) is not empty %}
+                <div class="alert text-danger">
+                    {{ form_errors(form.adresseRV) }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+         
+             {{ form_label(form.etatRV, 'etatRV', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.etatRV, {'attr': {'class': 'form-control'}}) }}
+            {% if form_errors(form.etatRV) is not empty %}
+                <div class="alert text-danger">
+                    {{ form_errors(form.etatRV) }} 
+                </div>
+            {% endif %}
+        </div>
+
+
+
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.idcollecte, 'idcollecte', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.idcollecte, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+
+        </div>
+
+
+
+
+        {{ form_rest(form) }}
+
+        <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </form>
+    {{ form_end(form) }}
+</div>

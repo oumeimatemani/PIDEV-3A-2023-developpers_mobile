@@ -1,0 +1,137 @@
+{% extends 'baseFront.html.twig' %}
+{% block title %}Passer votre commande
+{% endblock %}
+
+{% block body %}
+	<section id="portfolio" class="portfolio sections-bg">
+		<div class="container aos-init aos-animate" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>Merci d'entrer  vos coordonnées !
+				</h2>
+				<ul class="portfolio-flters">
+					<li data-filter="*" class="filter-active">
+						<div class="row mb-3" style="text-align:left;">
+							<strong>Prix Total de la commande =
+								{{TotalPrix}}
+								dt</strong>
+						</div>
+					</li>
+				</ul>
+			</td>
+
+		</div>
+
+		<div class="portfolio-isotope aos-init aos-animate" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+			<div>
+				<ul class="portfolio-flters">
+					<li data-filter="*" class="filter-active"></li>
+				</ul>
+				<!-- End Portfolio Filters -->
+			</div>
+
+			<div class="row gy-4 portfolio-container" style="position: relative; height: 2803.56px;">
+				<div class="col-xl-15 col-md-15 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
+					<div class="portfolio-wrap">
+						<a href="assets/img/portfolio/app-1.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="" class="img-fluid" alt=""></a>
+						<div class="portfolio-info">
+							<section class="section">
+								<div class="row">
+									<div class="col-lg-6">
+
+										<div class="card">
+
+											<div
+												class="card-body">
+
+												<!-- General Form Elements -->
+												{{ form_start(f,{attr:{'novalidate':'novalidate'}}) }}
+
+												<div class="row mb-3">
+													<label>Nom et prénom
+													</label>
+													<div class="col-sm-10">
+														{{ form_widget(f.nomClient,{'attr':{'class':'form-control'}}) }}
+													</div>
+													{% if form_errors(f.nomClient) %}
+														<div class="alert alert-danger">
+															{{ form_errors(f.nomClient) }}
+														</div>
+													{% endif %}
+												</div>
+
+												<div class="row mb-3">
+													<label>Adresse e-mail
+													</label>
+													<div class="col-sm-10">
+														{{ form_widget(f.mailClient,{'attr':{'class':'form-control'}}) }}
+													</div>
+													{% if form_errors(f.mailClient) %}
+														<div class="alert alert-danger">
+															{{ form_errors(f.mailClient) }}
+														</div>
+													{% endif %}
+												</div>
+
+
+												<div class="row mb-3">
+													<label>Adresse de livraison
+													</label>
+													<div class="col-sm-10">
+														{{ form_widget(f.adresseLivraison,{'attr':{'class':'form-control'}}) }}
+													</div>
+													{% if form_errors(f.adresseLivraison) %}
+														<div class="alert alert-danger">
+															{{ form_errors(f.adresseLivraison) }}
+														</div>
+													{% endif %}
+												</div>
+
+
+												<div class="row mb-3">
+													<div class="col-sm-10">
+														<button type="submit" class="col-sm-4 btn btn-primary">Valider commande
+														</button>
+													</div>
+												</div>
+
+
+												{{ form_end(f) }}
+
+
+											</div>
+
+										</div>
+									</div>
+								</section>
+								<!-- End Portfolio Item -->
+
+							</div>
+						</div>
+
+					</div>
+					<br>
+
+				</div>
+				<!-- End Portfolio Container -->
+				<br>
+				<div>
+
+					<a href="{{ path('display_prodFront') }}">
+
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							Passer une autre commande
+						</button>
+					</a>
+					<a href="{{ path('display_commande') }}">
+						<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+							historique de vos commandes
+						</button>
+
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

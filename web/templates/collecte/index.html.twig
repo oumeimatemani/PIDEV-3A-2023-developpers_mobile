@@ -1,0 +1,87 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Collecte index{% endblock %}
+
+{% block body %}
+{% block hero_section %}
+        <section id="hero" class="hero">
+            <div class="container position-relative">
+                <div class="row gy-5" data-aos="fade-in">
+                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+                        <h2>List de  <span>collectes</span></h2>
+
+
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <img src="assets1/img/ecotrans.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+        </section>
+
+    {% endblock %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+            {% for message in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+               <a href="{{ path('app_collecte_new') }}" class="btn btn-primary">Ajouter un collecte</a>
+
+
+    {# <h1>Collecte </h1> #}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>collecteur</th>
+                {# <th>Id_don</th> #}
+                <th>Poids</th>
+                <th>Description</th>
+                <th>Categorie</th>
+                <th>Etat du collecte</th>
+                <th>Typevehicule</th>
+                <th>Contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+                <td>{{ collecte.idusercollect.email }}</td>
+                {# <td>{{ collecte.iddon.id }}</td> #}
+                <td>{{ collecte.iddon.poids }} kg</td>
+                <td>{{ collecte.iddon.descriptionD }} </td>
+                <td>{{ collecte.iddon.idCategorie.nom }} </td>
+                
+                <td>{% if collecte.etatC == 2 %}<span class="badge bg-success">valide</span>{% endif %}{% if collecte.etatC == 1 %}<span class="badge bg-danger">en cour</span>{% endif %}</td>
+                <td>{{ collecte.typevehicule }}</td>
+                <td>{{ collecte.contact }}</td>
+                <td>
+                
+                
+                    <a href="{{ path('app_collecte_show', {'id': collecte.id}) }}" class="btn btn-sm btn-info" >Voir</a>
+                    <a href="{{ path('app_collecte_edit', {'id': collecte.id}) }}" class="btn btn-sm btn-warning" >Modifier</a>
+                    {% if  collecte.etatC == 1 %} <a href="{{ path('app_rendezvous_new', {'id': collecte.id}) }}" class="badge bg-success" >Rendez vous</a> {% endif %}
+                
+
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    
+    </div>
+    </div></section>
+{% endblock %}

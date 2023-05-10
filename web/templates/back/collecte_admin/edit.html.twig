@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Collecte{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+    <h1>Edit Collecte</h1>
+
+    {{ include('back/collecte_admin/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_collecte_index_admin') }}">back to list</a>
+
+    {{ include('back/collecte_admin/_delete_form.html.twig') }}
+        </div></section></main>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'baseFront.html.twig' %}
+{% block title %} Detail   {% endblock %}
+{% block body %}
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+
+            <div class="section-header">
+                <h2>Detail de produit</h2>
+
+            </div>
+
+            <div class="row gy-4">
+
+                <div class="col-lg-6">
+                    <img style="width: 456px; height: 297px; padding: 5px;  " src="{{ asset('uploads/'~imageP) }}"/>
+                </div>
+                <div class="col-lg-6">
+                    <div class="content ps-0 ps-lg-5">
+                        <p class="fst-italic"></p>
+                        <ul>
+                            <li><i class="bi bi-check-circle-fill"></i> Produit numero :{{id }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Description : {{ descriptionP }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Prix: {{ prixP }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nom : {{ nomP }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Stock : {{ stock }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> Nom de la categorie : {{ idcatP }}</li>
+                            <li> <i class="bi bi-check-circle-fill"></i>QR CODE :
+                                <br/>
+
+                                <img class="card-img-top img-fluid" w="5" h="25" src="{{ asset('uploads/'~imageQrCode) }}" alt="Card image cap">
+
+                            </li>
+
+                        </ul>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

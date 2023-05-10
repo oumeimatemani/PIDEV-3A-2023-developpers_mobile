@@ -1,0 +1,71 @@
+{% extends 'baseU.html.twig' %}
+
+{% block title %}utilisateur{% endblock %}
+
+{% block body  %}
+
+    <h1 style="color: #012970;font-family: "Nunito", sans-serif; margin-top:40px;"> affichage d' un utlisateur  </h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Roles</th>
+                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ user.password }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td>{{ user.photo }}</td>
+            </tr>
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ user.datenaissance ? user.datenaissance|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Cin</th>
+                <td>{{ user.cin }}</td>
+            </tr>
+            <tr>
+                <th>Region</th>
+                <td>{{ user.region }}</td>
+            </tr>
+            <tr>
+                <th>Ville</th>
+                <td>{{ user.ville }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Isactive</th>
+                <td>{{ user.isactive }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_index') }}"><button class="btn btn-outline-info float-right" >retour </button> </a>
+
+    <a href="{{ path('app_user_edit', {'id': user.id}) }}"> <button class="btn btn-outline-success">modifier </button></a>
+
+    {{ include('user/_delete_form.html.twig') }}
+{% endblock %}

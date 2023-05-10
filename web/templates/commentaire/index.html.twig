@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commentaire index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+    <h1>Commentaire index</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Datec</th>
+            <th>Text</th>
+            <th>Auteur</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for commentaire in commentaires %}
+            <tr>
+                <td>{{ commentaire.id }}</td>
+                <td>{{ commentaire.dateCM ? commentaire.dateCM|date('Y-m-d') : '' }}</td>
+                <td>{{ commentaire.texte }}</td>
+                <td>{{ commentaire.auteur }}</td>
+                <td>
+                    <a href="{{ path('commentaire_show', {'id': commentaire.id}) }}">show</a>
+                    <a href="{{ path('commentaire_edit', {'id': commentaire.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('commentaire_new') }}">Create new</a>
+    <main id="main" class="main">
+        {% endblock %}

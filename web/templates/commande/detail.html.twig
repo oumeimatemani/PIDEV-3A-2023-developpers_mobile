@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Facture</title>
+		<style>
+			.invoice-container {
+				width: 800px;
+				margin: 0 auto;
+				font-family: Arial, sans-serif;
+			}
+			.header {
+				background-color: #eee;
+				padding: 20px;
+			}
+			h1 {
+				margin: 0;
+			}
+			.invoice-details {
+				padding: 20px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-bottom: 20px;
+			}
+			th,
+			td {
+				padding: 10px;
+				text-align: left;
+				border-bottom: 1px solid #ccc;
+			}
+			th {
+				background-color: #eee;
+			}
+			.total {
+				text-align: right;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="invoice-container">
+			<div class="header">
+				<h1>Facture</h1>
+
+			</div>
+			<div class="invoice-details">
+				<p>
+					<strong>N° Facture :</strong>
+					{{ commande.id }}</p>
+				<p>
+					<strong>Date de Commande :</strong>
+					{{ commande.dateCommande|date("m/d/Y") }}</p>
+				<p>
+					<strong>Nom Client:</strong>
+					{{ commande.nomClient }}</p>
+
+			</div>
+			<table>
+				<thead>
+					<tr>
+						<th>commande</th>
+						<th>Quantity</th>
+						<th>prixTotal</th>
+						<th>adresseLivraison</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{ commande.nomClient }}</td>
+						<td>12</td>
+						<td>{{ commande.prixTotal|number_format(2) }}dt</td>
+						<td>{{ commande.adresseLivraison }}</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>

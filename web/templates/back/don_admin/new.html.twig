@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Don{% endblock %}
+{% block body %}
+    <main id="main" class="main">
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+                <h1>Create new Don</h1>
+
+                {{ include('back/don_admin/_form.html.twig') }}
+
+                <a href="{{ path('app_don_home_admin') }}">back to list</a>
+
+            </div></div></section></main>
+
+{% endblock %}

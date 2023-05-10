@@ -1,0 +1,71 @@
+{% extends 'baseU.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+   <h1 style="color: #012970;font-family: "Nunito", sans-serif; margin-top:40px;"> Liste des  Utilisateurs </h1>
+             <a href="{{ path('app_user_search') }}"> <button class="btn btn-outline-info " >rechercher utilisateur  </button> </a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Roles</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Datenaissance</th>
+                <th>Cin</th>
+                <th>Region</th>
+                <th>Ville</th>
+                <th>Adresse</th>
+                <th>Isactive</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{%  for role in user.roles %}
+                   {% if role == "ROLE_USER"%}
+                   utilisateur 
+                   {% endif %}
+                    {% if role == "ROLE_ADMIN"%}
+                   utilisateur 
+                   {% endif %}
+                    {% if role == "ROLE_DONNEUR"%}
+                   utilisateur 
+                   {% endif %}
+                    {% if role == "ROLE_COLLECTEUR"%}
+                   Collecteur 
+                   {% endif %}
+                   {% endfor %}
+                </td>
+                
+                <td>{{ user.nom }}</td>
+                <td>{{ user.prenom }}</td>
+                <td>{{ user.datenaissance ? user.datenaissance|date('Y-m-d') : '' }}</td>
+                <td>{{ user.cin }}</td>
+                <td>{{ user.region }}</td>
+                <td>{{ user.ville }}</td>
+                <td>{{ user.adresse }}</td>
+                <td>{{ user.isactive }}</td>
+                <td>
+                   {#} <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>{#}
+                    <a href="{{ path('app_user_edit', {'id': user.id}) }}"> <button class="btn btn-outline-success">modifier </button></a>
+                     <a href="{{ path('app_user_delete', {'id': user.id}) }}"> <button class="btn btn-outline-danger">supprimer </button> </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">pas d'utilisateur</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_user_new') }}"> <button class="btn btn-outline-info " >ajouter utilisteur </button> </a>
+        
+
+{% endblock %}

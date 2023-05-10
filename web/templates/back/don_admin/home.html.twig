@@ -1,0 +1,218 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Statistiques de dons{% endblock %}
+
+{% block body %}
+    <main id="main" class="main">
+
+        <section id="about" class="about">
+            <div class="container" data-aos="fade-up">  <h1>Statistiques de dons</h1>
+                <main class="container my-5">
+                    {% for flash_message in app.session.flashbag.get('success') %}
+                        <div class="alert alert-success">{{ flash_message }}</div>
+                    {% endfor %}
+                    <section id="about" class="about">
+                        <div class="row justify-content-center">
+                            <div class="col-md-10">
+
+                                <div class="card text-center">
+                                    <div class="card-header">
+                                        <h4 class="my-0 font-weight-normal">Nombre total de dons</h4>
+                                        <h1 class="card-title pricing-card-title">{{ totalDonCount }}</h1>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-5">
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="my-0 font-weight-normal">Dons en disponible</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h1 class="card-title pricing-card-title">{{ dispoDonCount }}</h1>
+                                                <p class="card-text">Pourcentage : {{ dispoDonPercentage }}%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="my-0 font-weight-normal">Dons en attente</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h1 class="card-title pricing-card-title">{{ attenteDonCount }}</h1>
+                                                <p class="card-text">Pourcentage : {{ attenteDonPercentage }}%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h4 class="my-0 font-weight-normal">Dons validés</h4>
+                                            </div>
+                                            <div class="card-body">
+                                                <h1 class="card-title pricing-card-title">{{ valideDonCount }}</h1>
+                                                <p class="card-text">Pourcentage : {{ valideDonPercentage }}%</p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                {% block content %}
+                                    <canvas id="myChart"></canvas>
+                                {% endblock %}
+
+                                {% block javascripts %}
+                                    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                                    <script>
+                                        var ctx = document.getElementById('myChart').getContext('2d');
+                                        var myChart = new Chart(ctx, {
+                                            type: 'line',
+                                            data: {
+                                                labels: ['Total Don Count' , 'dispoDonCount', 'Attente Don Count' , 'Valide Don Count'  ],
+                                                datasets: [{
+                                                    label: 'Donations',
+                                                    data: [{{ totalDonCount }}  , {{ dispoDonCount }} , {{ attenteDonCount }} , {{ valideDonCount }} ],
+                                                    backgroundColor: [
+                                                        'rgba(255, 99, 132, 0.2)',
+                                                        'rgba(54, 162, 235, 0.2)',
+                                                        'rgba(255, 206, 86, 0.2)'
+                                                    ],
+                                                    borderColor: [
+                                                        'rgba(255, 99, 132, 1)',
+                                                        'rgba(54, 162, 235, 1)',
+                                                        'rgba(255, 206, 86, 1)'
+                                                    ],
+                                                    borderWidth: 1                                }]
+                                            },
+                                            options: {
+                                                scales: {
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }]
+                                                }
+                                            }
+                                        });
+                                    </script>
+                                {% endblock %}
+                            </div>
+                        </div>
+                    </section>
+                </main>
+
+                <div class="container my-5">
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    Nombre total de dons : <span class="fw-bold">{{ total }}</span>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% for categorie in categoriesdon %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ categorie.categorie }}
+                                            <span class="badge bg-secondary rounded-pill">{{ categorie.nombre }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    Nombre total de dons disponibles : <span class="fw-bold">{{ totaldonDispo }}</span>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% for donDisp in donDispo %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            Don {{ donDisp.id }}
+                                            <span class="badge bg-secondary rounded-pill">{{ donDisp.poids }} kg</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    Poids total de dons : <span class="fw-bold">{{ poidsTotal }} kgs</span>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% for categorie in categoriesdons %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ categorie.categorie }}
+                                            <span class="badge bg-secondary rounded-pill">{{ categorie.poids }} kg</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 mb-3">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    Total de catégories : <span class="fw-bold">{{ totalcategorie }}</span>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    {% for categorie in categorie %}
+                                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                                            {{ categorie.id }}. {{ categorie.nom }}
+                                            <span class="fw-bold">{{ categorie.description }}</span>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-12 mb-5">
+                            <div class="card">
+                                <div class="card-header bg-primary text-white">
+                                    Utilisateurs ayant effectué des dons
+                                </div>
+                                <div class="card-body">
+                                    <table class="table table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th>Nom</th>
+                                            <th>Poids total des dons</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        {% for user in users %}
+                                            <tr>
+                                                <td>{{ user.user }}</td>
+                                                <td>{{ user.poids }}</td>
+                                            </tr>
+                                        {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <a href="{{ path('app_don_new_admin') }}" class="btn btn-primary btn-lg btn-block">Ajouter un don</a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="{{ path('app_don_index_admin') }}" class="btn btn-secondary btn-lg btn-block">Consulter la liste des dons</a>
+                    </div>
+                </div>
+
+
+
+               </div></section></main>
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste de dons{% endblock %}
+
+{% block body %}
+    <main id="main" class="main">
+
+        <section id="dons" class="dons">
+            <div class="container" data-aos="fade-up">
+                <div class="row gy-4">
+
+                    <h1>Liste de dons</h1>
+
+
+                        <form action="{{ path('app_don_index_admin') }}" method="get">
+                            <div class="mb-3">
+                                <label for="categorie" class="form-label">Filtrer par catégorie :</label>
+                                <select class="form-select" id="categorie" name="categorie">
+                                    <option value="0">Toutes les catégories</option>
+                                    {% for categorie in categories %}
+                                        <option value="{{ categorie.id }}" {% if app.request.query.get('categorie') == categorie.id %}selected{% endif %}>{{ categorie.nom }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Filtrer</button>
+                        </form>
+
+
+
+                        <div class="text-end mt-4">
+                            <a href="{{ path('app_don_new_admin') }}"><button type="submit" class="btn btn-primary">Ajouter un don</button></a>
+                        </div>
+                    <div class="pagination">
+                        {{ knp_pagination_render(dons) }}
+                    </div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+{#
+                                <th>User</th>
+#}
+                                <th>Poids</th>
+                                <th>Description</th>
+                                <th>Etat</th>
+                                <th>Catégorie</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for don in dons %}
+                                <tr>
+                                    <td>{{ don.id }}</td>
+{#
+                                    <td>{% if don.iduserdon == null %}<span class="badge bg-success">null</span>{% else %}<span class="badge bg-danger">{{ don.iduserdon }}</span>{% endif %}</td>
+#}
+                                    <td>{{ don.poids }} kg</td>
+                                    <td>{{ don.descriptionD }}</td>
+                                    <td>{% if don.etat == 3 %}<span class="badge bg-success">valide</span>{% endif %}{% if don.etat == 2 %}<span class="badge bg-danger">en cours</span>{% endif %}{% if don.etat == 1 %}<span class="badge bg-danger">disponible</span>{% endif %}</td>
+                                    <td>{{ don.idCategorie.nom }}</td>
+                                    <td>{{ don.date|date('d/m/Y') }}</td>
+                                    <td>
+                                        <a href="{{ path('app_don_show_admin', {'id': don.id}) }}" class="btn btn-sm btn-info">Voir</a>
+                                        <a href="{{ path('app_don_edit_admin', {'id': don.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                                        <a href="{{ path('app_don_delete_admin', {'id': don.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="7">Aucun don trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="pagination">
+                            {{ knp_pagination_render(dons) }}
+                        </div>
+
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+{% endblock %}

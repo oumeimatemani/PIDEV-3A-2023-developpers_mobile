@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collecte index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+    <h1>Collecte </h1>
+            <div class="text-end mt-4">
+                <a href="{{ path('app_collecte_new') }}"><button type="submit" class="btn btn-primary">Ajouter un collecte</button></a>            
+            </div>                        
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EtatC</th>
+                <th>Typevehicule</th>
+                <th>Contact</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for collecte in collectes %}
+            <tr>
+                <td>{{ collecte.id }}</td>
+                <td>{% if collecte.etatC == 2 %}<span class="badge bg-success">valide</span>{% endif %}{% if collecte.etatC == 1 %}<span class="badge bg-danger">en cour</span>{% endif %}</td>
+                <td>{{ collecte.typevehicule }}</td>
+                <td>{{ collecte.contact }}</td>
+                <td>
+                    <a href="{{ path('app_collecte_show_admin', {'id': collecte.id}) }}" class="btn btn-sm btn-info" >Voir</a>
+                    <a href="{{ path('app_collecte_edit_admin', {'id': collecte.id}) }}" class="btn btn-sm btn-warning" >Modifier</a>
+                    {% if  collecte.etatC == 1 %} <a href="{{ path('app_rendezvous_new_admin', {'id': collecte.id}) }}" class="badge bg-success" >Rendez vous</a> {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+ 
+        </div></section></main>
+{% endblock %}

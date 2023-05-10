@@ -1,0 +1,68 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Rendezvous index{% endblock %}
+
+{% block body %}
+{% block hero_section %}
+        <section id="hero" class="hero">
+            <div class="container position-relative">
+                <div class="row gy-5" data-aos="fade-in">
+                    <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+                        <h2>List de  <span>rendez vous</span></h2>
+
+
+                    </div>
+                    <div class="col-lg-6 order-1 order-lg-2">
+                        <img src="assets1/img/ecotrans.png" class="img-fluid" alt="" data-aos="zoom-out" data-aos-delay="100">
+                    </div>
+                </div>
+            </div>
+
+
+
+            </div>
+        </section>
+
+    {% endblock %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+            {% for message in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+              
+    {# <h1>Rendez Vous </h1> #}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateRV</th>
+                <th>AdresseRV</th>
+                <th>EtatRV</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rendezvou in rendezvouses %}
+            <tr>
+                <td>{{ rendezvou.id }}</td>
+                <td>{{ rendezvou.dateRV ? rendezvou.dateRV|date('Y-m-d') : '' }}</td>
+                <td>{{ rendezvou.adresseRV }}</td>
+                <td>{% if rendezvou.etatRV == 2 %}<span class="badge bg-success">terminer</span>{% endif %}{% if rendezvou.etatRV == 1 %}<span class="badge bg-danger">en cour</span>{% endif %}</td>
+                <td>
+                   <a href="{{ path('app_rendezvous_show', {'id': rendezvou.id}) }}" class="btn btn-sm btn-info" >Voir</a>
+                    <a href="{{ path('app_rendezvous_edit', {'id': rendezvou.id}) }}" class="btn btn-sm btn-warning" >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+    </div></section>
+{% endblock %}

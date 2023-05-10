@@ -1,0 +1,16 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Collecte{% endblock %}
+
+{% block body %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+    <h1>Create new Collecte</h1>
+
+    {{ include('collecte/_form.html.twig') }}
+
+    <a href="{{ path('app_collecte_index') }}">back to list</a>
+
+        </div></div></section>
+{% endblock %}

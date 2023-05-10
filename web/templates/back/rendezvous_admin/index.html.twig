@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendezvous index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+    <h1>Liste Rendezvous </h1>
+    
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Date</th>
+                <th>Adresse</th>
+                <th>Etat</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for rendezvou in rendezvouses %}
+            <tr>
+                <td>{{ rendezvou.id }}</td>
+                <td>{{ rendezvou.dateRV ? rendezvou.dateRV|date('Y-m-d') : '' }}</td>
+                <td>{{ rendezvou.adresseRV }}</td>
+                <td>{% if rendezvou.etatRV == 2 %}<span class="badge bg-success">terminer</span>{% endif %}{% if rendezvou.etatRV == 1 %}<span class="badge bg-danger">en cour</span>{% endif %}</td>
+                <td>
+                   <a href="{{ path('app_rendezvous_show_admin', {'id': rendezvou.id}) }}" class="btn btn-sm btn-info" >Voir</a>
+                    <a href="{{ path('app_rendezvous_edit_admin', {'id': rendezvou.id}) }}" class="btn btn-sm btn-warning" >Modifier</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        </div>
+        </div>
+        </section>
+
+                
+{% endblock %}

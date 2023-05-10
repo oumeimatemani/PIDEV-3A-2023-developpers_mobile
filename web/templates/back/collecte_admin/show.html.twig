@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Collecte{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+    <h1>Collecte</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ collecte.id }}</td>
+            </tr>
+            <tr>
+                <th>EtatC</th>
+                <td>{{ collecte.etatC }}</td>
+            </tr>
+            <tr>
+                <th>Typevehicule</th>
+                <td>{{ collecte.typevehicule }}</td>
+            </tr>
+            <tr>
+                <th>Contact</th>
+                <td>{{ collecte.contact }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_collecte_index_admin') }}">back to list</a>
+
+    <a href="{{ path('app_collecte_edit_admin', {'id': collecte.id}) }}" class="btn btn-sm btn-warning">edit</a>
+
+            {{ include('back/collecte_admin/_delete_form.html.twig') }}</div></section></main>
+{% endblock %}

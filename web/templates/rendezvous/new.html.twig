@@ -1,0 +1,16 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Rendezvous{% endblock %}
+
+{% block body %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+    <h1>Create new Rendezvous</h1>
+
+    {{ include('rendezvous/_form.html.twig') }}
+
+    <a href="{{ path('app_rendezvous_index') }}">back to list</a>
+    
+    </div></div></section>
+{% endblock %}

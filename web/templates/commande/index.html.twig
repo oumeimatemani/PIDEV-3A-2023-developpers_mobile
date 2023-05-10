@@ -1,0 +1,94 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}liste des produits
+{% endblock %}
+
+{% block body %}
+
+	<main id="main" class="main">
+
+		<div class="pagetitle">
+			<h1>Mes Commandes</h1>
+			<nav></nav>
+		</div>
+		<!-- End Page Title -->
+
+		<section class="section">
+			<div class="row">
+				<div class="col-lg-12">
+
+					<div class="card">
+						<div class="card-body">
+
+							<h5 class="card-title">Historique de commandes</h5>
+
+
+							<!-- Default Table -->
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">status</th>
+										<th scope="col">adresse livraison</th>
+										<th scope="col">date commande</th>
+										<th scope="col">prix total</th>
+										<th scope="col"></th>
+
+
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											{% if Commande | length == 0 %}
+
+												<p style="text-align: center">Produits vides</p>
+
+											{% endif %}
+
+										</td>
+									</tr>
+									{% for p in Commande  %}
+
+										<tr>
+
+											<td>{{p.status}}</td>
+											<td>{{p.adresseLivraison}}</td>
+											<td>{{ p.dateCommande|date('Y-m-d H:i:s') }}</td>
+											<td>{{ p.prixTotal }}</td>
+											<td>
+
+												<a href="{{ path('commande.pdf',{id:p.id}) }}">
+													<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+														<i class="bi bi-printer"></i>
+													</button>
+												</a>
+
+
+											</td>
+
+										</tr>
+
+									{% endfor %}
+
+
+								</tbody>
+								<td>
+
+									<a href="{{ path('display_prod') }}">
+										<button type="button" class="btn btn-primary">Passer une autre commande</button>
+									</a>
+								</td>
+							</td>
+						</table>
+						<!-- End Default Table Example -->
+					</div>
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</section>
+
+</main>{% endblock %}

@@ -1,0 +1,38 @@
+
+
+<div class="card-body">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <form>
+
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.nom, 'Nom', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.nom, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.nom) is not empty %}
+                    <div class="alert text-danger">
+                        {{ form_errors(form.nom) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+
+
+        <div class="mb-3">
+            {{ form_label(form.description, 'Description', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            {% if form_errors(form.description) is not empty %}
+                <div class="alert text-danger">
+                    {{ form_errors(form.description) }}
+                </div>
+            {% endif %}
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </form>
+    {{ form_end(form) }}
+</div>

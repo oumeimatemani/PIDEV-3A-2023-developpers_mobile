@@ -1,0 +1,88 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}Blog{% endblock %}
+
+{% block body %}
+
+<!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs">
+      <div class="page-header d-flex align-items-center" style="background-image: url('');">
+        <div class="container position-relative">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 text-center">
+              <h2>Blog</h2>
+              <p>Bridging the gap between researchers, practitioners and policymakers.
+Here you can find summaries of research published in Journal of Applied Ecology, Ecological Solutions and Evidence and Applied Ecology Resources, as well as topical contributions from our global community.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <nav>
+        <div class="container">
+          <ol>
+            <li><a href="index.html">Home</a></li>
+            <li>Blog</li>
+          </ol>
+        </div>
+      </nav>
+    </div><!-- End Breadcrumbs -->
+
+
+    <!-- ======= Blog Section ======= -->
+    {% for blog in blogs %}
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4 posts-list">
+
+         <div class="col-xl-4 col-md-6">
+            <article>
+
+              <div class="post-img">
+              <!-- image blog -->
+              <img{{ blog.imageB }}>
+              <!-- End image blog -->
+              </div>
+
+              <h2 class="title">
+                <a href="{{ path('blog_details', {'id': blog.id}) }}">{{ blog.titre }}</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+              <!-- image user -->
+                <img src="pidev/Pi2023/Pi2023/assets/img/blog/blog-author.jpg" alt="" class="img-fluid post-author-img flex-shrink-0">
+              <!-- end image user -->
+                <div class="post-meta">
+                  <p class="post-author-list">Maria Doe</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">{{ blog.date ? blog.date|date('d-m-Y') : '' }}</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          </div><!-- End post list item -->
+
+        {% else %}
+            <tr>
+                <td colspan="6">no blogs found</td>
+            </tr>
+        {% endfor %}
+
+
+        <div class="blog-pagination">
+          <ul class="justify-content-center">
+            <li class="active"><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+          </ul>
+        </div><!-- End blog pagination -->
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+
+
+{% endblock %}

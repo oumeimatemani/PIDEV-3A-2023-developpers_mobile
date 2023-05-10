@@ -1,0 +1,65 @@
+
+
+<div class="card-body">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    <form>
+
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.etatC, 'etatC', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.etatC, {'attr': {'class': 'form-control'}}) }}
+                {% if form_errors(form.etatC) is not empty %}
+                    <div class="alert text-danger">
+                        {{ form_errors(form.etatC) }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.typevehicule, 'typevehicule', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.typevehicule, {'attr': {'class': 'form-control'}}) }}
+            {% if form_errors(form.typevehicule) is not empty %}
+                <div class="alert text-danger">
+                    {{ form_errors(form.typevehicule) }}
+                </div>
+            {% endif %}
+        </div>
+
+        <div class="mb-3">
+            {{ form_label(form.contact, 'contact', {'label_attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.contact, {'attr': {'class': 'form-control'}}) }}
+            {% if form_errors(form.contact) is not empty %}
+                <div class="alert text-danger">
+                    {{ form_errors(form.contact) }}
+                </div>
+            {% endif %}
+        </div>
+
+
+
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.iddon, 'iddon', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.iddon, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                {{ form_label(form.idusercollect, 'idusercollect', {'label_attr': {'class': 'form-label'}}) }}
+                {{ form_widget(form.idusercollect, {'attr': {'class': 'form-control'}}) }}
+
+            </div>
+
+        </div>
+
+        {{ form_rest(form) }}
+
+        <div class="text-end mt-4">
+            <button type="submit" class="btn btn-primary">{{ button_label|default('Enregistrer') }}</button>
+        </div>
+    </form>
+    {{ form_end(form) }}
+</div>

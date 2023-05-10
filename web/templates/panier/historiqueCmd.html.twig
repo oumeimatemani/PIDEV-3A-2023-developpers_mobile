@@ -1,0 +1,98 @@
+{% extends 'baseFront.html.twig' %}
+{% block title %}Historique
+{% endblock %}
+
+{% block body %}
+	<section id="portfolio" class="portfolio sections-bg">
+		<div class="container aos-init aos-animate" data-aos="fade-up">
+
+			<div class="section-header">
+				<h2>Historique de vos commandes
+				</h2>
+				<ul class="portfolio-flters">
+					<li data-filter="*" class="filter-active"></li>
+				</ul>
+			</td>
+
+		</div>
+
+		<div class="portfolio-isotope aos-init aos-animate" data-portfolio-filter="*" data-portfolio-layout="masonry" data-portfolio-sort="original-order" data-aos="fade-up" data-aos-delay="100">
+
+			<div>
+				<ul class="portfolio-flters">
+					<li data-filter="*" class="filter-active"></li>
+				</ul>
+				<!-- End Portfolio Filters -->
+			</div>
+
+			<div class="row gy-4 portfolio-container" style="position: relative; height: 2803.56px;">
+				<div class="col-xl-15 col-md-15 portfolio-item filter-app" style="position: absolute; left: 0px; top: 0px;">
+					<div class="portfolio-wrap">
+						<a href="assets/img/portfolio/app-1.jpg" data-gallery="portfolio-gallery-app" class="glightbox"><img src="" class="img-fluid" alt=""></a>
+						<div class="portfolio-info">
+
+							<table class="table">
+								<thead>
+									<tr>
+										<th scope="col">status</th>
+										<th scope="col">adresse livraison</th>
+										<th scope="col">date commande</th>
+										<th scope="col">prix total</th>
+										<th scope="col">Facture</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											{% if Commande | length == 0 %}
+
+												<p style="text-align: center">Produits vides</p>
+
+											{% endif %}
+
+										</td>
+									</tr>
+									{% for p in Commande  %}
+
+										<tr>
+
+											<td>{{p.status}}</td>
+											<td>{{p.adresseLivraison}}</td>
+											<td>{{ p.dateCommande|date('Y-m-d H:i:s') }}</td>
+											<td>{{ p.prixTotal }}</td>
+											<td>
+
+												<a href="{{ path('commande.pdf',{id:p.id}) }}">
+													<button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#exampleModalCenter">
+														<i class="bi bi-printer"></i>
+													</button>
+												</a>
+
+
+											</td>
+										</tr>
+
+									{% endfor %}
+
+								</tbody>
+
+							</table>
+							<!-- End Portfolio Item -->
+							<div class="align-center">
+								{{ knp_pagination_render(Commande) }}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div>
+			<td>
+				<a href="{{ path('display_prodFront') }}">
+					<button type="button" class="btn btn-primary">Passer une autre commande</button>
+				</a>
+			</td>
+		</div>
+		<!-- End Portfolio Container -->
+
+	</div>
+</div></section>{% endblock %}

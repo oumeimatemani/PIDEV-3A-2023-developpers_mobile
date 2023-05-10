@@ -1,0 +1,55 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+            <div class="container-fluid">
+
+
+                <div class="row">
+                    <a href="{{ path('display_prod') }}">
+                        <i class="fa fa-arrow-circle-left" style="font-size: 30px;"></i>
+
+                    </a>
+
+                </div>
+                <div class="row" style="display: flex;align-items: center;justify-content: center;">
+
+                    <div class="col-md-6 col-lg-3">
+
+                        <div class="card m-b-20">
+                            <img class="card-img-top img-fluid" src="{{ asset('uploads/'~imageP) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h4 class="card-title"> Produit numero :{{id }}</h4>
+                                <p class="card-text">Description : <span style="color:#ff5b5b">{{ descriptionP }}</span> </p>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Prix: <span style="color:#ff5b5b">{{ prixP }}</span> </li>
+                                <li class="list-group-item">Nom : {{ nomP }}</li>
+                                <li class="list-group-item">Categorie : {{ idcatP }}</li>
+                                <li class="list-group-item">QR CODE :
+                                    <br/>
+
+                                    <img class="card-img-top img-fluid" w="5" h="25" src="{{ asset('uploads/'~imageQrCode) }}" alt="Card image cap">
+
+                                </li>
+
+                            </ul>
+                            {#                            <div class="card-body">#}
+                            {#                                <a href="#" class="card-link">Card link</a>#}
+                            {#                                <a href="#" class="card-link">Another link</a>#}
+                            {#                            </div>#}
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

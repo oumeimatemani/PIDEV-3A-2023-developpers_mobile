@@ -1,0 +1,18 @@
+{% extends 'baseU.html.twig' %}
+
+{% block title %} modifier utilisateur !  {% endblock %}
+
+{% block body %}
+   <div class="container" style="width:auto;">
+   
+   <h1 style="color: #012970;font-family: "Nunito", sans-serif; margin-top:40px;"> Modifier Utilisateur  </h1>
+    <div class="card-body">
+    {{ include('user/_form.html.twig', {'button_label': 'Modifier '}) }}
+
+    <a href="{{ path('app_user_index') }}"><button class="btn btn-outline-info float-right mb-3" >retour </button> </a>
+
+    {{ include('user/_delete_form.html.twig') }}
+    </div>
+    
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CategorieD index{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+
+
+    <h1>Liste de  Categories</h1>
+                <div class="text-end mt-4">
+                    <a href="{{ path('app_categorie_d_new') }}"><button type="submit" class="btn btn-primary">Ajouter un categorie</button></a>
+                </div>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for categorie_d in categorie_ds %}
+            <tr>
+                <td>{{ categorie_d.id }}</td>
+                <td>{{ categorie_d.nom }}</td>
+                <td>{{ categorie_d.description }}</td>
+                <td>
+
+                    <a href="{{ path('app_categorie_d_show', {'id': categorie_d.id}) }}" class="btn btn-sm btn-info">Voir</a>
+                    <a href="{{ path('app_categorie_d_edit', {'id': categorie_d.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                    <a href="{{ path('app_categorie_d_delete', {'id': categorie_d.id}) }}" class="btn btn-sm btn-danger">Supprimer</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+
+            </div></div></section></main>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Rendezvous{% endblock %}
+
+{% block body %}
+<main id="main" class="main">
+
+    <section id="about" class="about">
+        <div class="container" data-aos="fade-up">
+            <div class="row gy-4">
+    <h1>Rendezvous</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ rendezvou.id }}</td>
+            </tr>
+            <tr>
+                <th>DateRV</th>
+                <td>{{ rendezvou.dateRV ? rendezvou.dateRV|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>AdresseRV</th>
+                <td>{{ rendezvou.adresseRV }}</td>
+            </tr>
+            <tr>
+                <th>EtatRV</th>
+                <td>{{ rendezvou.etatRV }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_rendezvous_index_admin') }}">back to list</a>
+
+    <a href="{{ path('app_rendezvous_edit_admin', {'id': rendezvou.id}) }}" class="btn btn-sm btn-warning">edit</a>
+
+                {{ include('rendezvous/_delete_form.html.twig') }}</div></div></section></main>
+{% endblock %}

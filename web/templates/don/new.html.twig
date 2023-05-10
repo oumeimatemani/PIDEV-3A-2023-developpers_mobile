@@ -1,0 +1,20 @@
+{% extends 'baseFront.html.twig' %}
+
+{% block title %}New Don{% endblock %}
+
+{% block body %}
+<section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+    <h1>Create new Don</h1>
+
+    {{ include('don/_form.html.twig') }}
+
+    <a href="{{ path('app_don_index') }}">back to list</a>
+            {% for message in app.session.flashbag.get('success') %}
+                <div class="alert alert-success">{{ message }}</div>
+            {% endfor %}
+        </div></div></section>
+{% endblock %}
+
+
